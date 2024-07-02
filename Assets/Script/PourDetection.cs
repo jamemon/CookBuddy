@@ -6,8 +6,6 @@ using UnityEngine;
 public class PourDetection : MonoBehaviour
 {
     public int pourThreshold = 45;
-    public Transform origin = null;
-    public GameObject streamPrefab = null;
     public ParticleSystem myParticleSystem;
 
     private bool isPouring = false;
@@ -23,17 +21,22 @@ public class PourDetection : MonoBehaviour
     {
         detectAngle();
         Debug.Log(Vector3.Angle(Vector3.down, transform.forward));
+        Debug.Log(myParticleSystem.isPlaying);
     }
 
     public void detectAngle()
     {
-        if (Vector3.Angle(Vector3.down, transform.forward) <= 60f)
+        if (Vector3.Angle(Vector3.down, transform.forward) <= 70f)
         {
-            myParticleSystem.Play();
+            if (myParticleSystem.isPlaying == false)
+            {
+                myParticleSystem.Play();
+            }
         }
         else
         {
             myParticleSystem.Stop();
+            myParticleSystem.Clear() ;
         }
     }
 }

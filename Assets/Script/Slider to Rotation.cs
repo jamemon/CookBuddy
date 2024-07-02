@@ -7,12 +7,14 @@ public class SlidertoRotation : MonoBehaviour
 {
     public Slider Slider;
     public float xLimit = 60f;
+    public PourDetection detect;
     // Start is called before the first frame update
     void Start()
     {
         Slider.onValueChanged.AddListener(delegate
         {
             RotateMe();
+            detect.detectAngle();
         });
     }
 
