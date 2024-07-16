@@ -5,10 +5,10 @@ using UnityEngine;
 public class Clock : MonoBehaviour
 {
     private bool _timeOut = false;
-    private float _timer = 60;
+    [SerializeField]private float _timer = 30;
     public RectTransform hand;
 
-    const float secondToDegree = 360 / 60;
+    const float secondToDegree = 360 / 30;
     // Update is called once per frame
     void Update()
     {
