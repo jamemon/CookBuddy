@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1104fbe34f66c9d47976f3fe47ec4bed
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 7da941c36a4076a4a914cb4fbccaba93
+  - enabled: 1
+    path: Assets/Scenes/BoilMinigame.unity
+    guid: 2e7ec8ba7426745488e87980ecac2beb
+  - enabled: 1
+    path: Assets/Scenes/MixerMiniGame.unity
+    guid: 2fe5049138da47641b7fde42039e1da1
   m_configObjects: {}
