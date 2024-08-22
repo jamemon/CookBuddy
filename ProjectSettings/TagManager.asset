@@ -8,6 +8,9 @@ TagManager:
   - Pointer
   - Bowl
   - Cutable
+  - Blade
+  - Manager
+  - Bound
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,9 @@ using UnityEngine;
 public class DragObject : MonoBehaviour
 {
     Vector3 mousePosition;
+
+    [SerializeField] private Clock clock;
+
     private bool hit = false;
     private Vector3 getMousesPos()
     {
@@ -12,11 +15,12 @@ public class DragObject : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        mousePosition= Input.mousePosition - getMousesPos();
+
+            mousePosition = Input.mousePosition - getMousesPos();
     }
     private void OnMouseDrag()
     {
-        if (!hit)
+        if (!hit && !clock.getGameEnd())
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         }

@@ -30,7 +30,7 @@ public class ClickTarget : MonoBehaviour
 
     public void WhenClick() 
     {
-        if (_IsinBound)
+        if (_IsinBound && !clock.getGameEnd())
         {
             
             if (_ClickCount < 3)
@@ -62,7 +62,6 @@ public class ClickTarget : MonoBehaviour
         _IsinBound = false;
     }
 
-
     private string calGrade()
     {
         if (clock.getTimer() >= 20f)
@@ -80,8 +79,11 @@ public class ClickTarget : MonoBehaviour
         return "F";
     }
 
+
     public void checkWinCon()
     {
+
+
         if (clock.getTimer() > 0 && target._ClickCount == 3)
         {
             clock.stopClock(true);
@@ -89,14 +91,13 @@ public class ClickTarget : MonoBehaviour
             Grade.text = calGrade();
             TimeLeft.text = clock.getTimer().ToString();
 
-            isEnd = true;   
         }
         else if(clock.getTimer() <= 0)
         {
             LoseUI.SetActive(true);
             clock.stopClock(true);
-            isEnd = true;
         }
+        isEnd = clock.getGameEnd();
     }
 
 }
