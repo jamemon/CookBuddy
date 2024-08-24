@@ -20,7 +20,7 @@ public class DragObject : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if (!hit && !clock.getGameEnd())
+        if (!hit)
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         }

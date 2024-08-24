@@ -11,6 +11,9 @@ TagManager:
   - Blade
   - Manager
   - Bound
+  - Pan
+  - Plate
+  - Chicken
   layers:
   - Default
   - TransparentFX

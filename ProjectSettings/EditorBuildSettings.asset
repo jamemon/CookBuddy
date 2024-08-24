@@ -12,14 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 7da941c36a4076a4a914cb4fbccaba93
   - enabled: 1
-    path: Assets/Scenes/BoilMinigame.unity
-    guid: 2e7ec8ba7426745488e87980ecac2beb
-  - enabled: 1
     path: Assets/Scenes/MixerMiniGame.unity
     guid: 2fe5049138da47641b7fde42039e1da1
   - enabled: 1
     path: Assets/Scenes/FruitNinja.unity
     guid: 93154072fdb821941af4001433d96f89
+  - enabled: 1
+    path: Assets/Scenes/FryMinigame.unity
+    guid: c7cccc596624e0d4b8b1beb70b61774c
+  - enabled: 1
+    path: Assets/Scenes/BoilMinigame.unity
+    guid: 2e7ec8ba7426745488e87980ecac2beb
   - enabled: 1
     path: Assets/Scenes/PlatingJigsaw.unity
     guid: 93954b4e231f88f468ee80e0f756c13f

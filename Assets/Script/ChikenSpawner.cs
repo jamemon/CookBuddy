@@ -12,8 +12,6 @@ public class ChikenSpawner : MonoBehaviour
 
     public float minDelay = .1f;
     public float maxDelay = 1f;
-    private bool isSpawn = true;
-    private bool isRunning = false;
     // Start is called before the first frame update
 
     private void Awake()
@@ -34,6 +32,5 @@ public class ChikenSpawner : MonoBehaviour
             Destroy(chickenTemp,3f);
 
         }
-         isRunning = false;
     }
 }
