@@ -12,6 +12,7 @@ public class FryGameManager : MonoBehaviour
     [SerializeField] private Plate plate;
     [SerializeField] private chickenManager[] chickenManager;
 
+    private bool isPlay = false;
     private void Update()
     {
         CheckWinCon();
@@ -20,30 +21,48 @@ public class FryGameManager : MonoBehaviour
     {
         if (plate.getChicCount() == 5 && clock.getTimer() > 0)
         {
-            winUI.SetActive(true);
-            grade.text = calGrade();
-            clock.stopClock(true);
+            win();
         }
         else if (plate.getChicCount() > 0 && clock.getTimer() <= 0)
         {
-            winUI.SetActive(true);
-            grade.text = calGrade();
-            clock.stopClock(true);
+            win();
+        }
+        else if (checkPlate())
+        {
+            win();
         }
         else if (plate.getChicCount() == 0 && clock.getTimer() <= 0 )
         {
-            loseUI.SetActive(true);
-            clock.stopClock(true);
+            lose();
         }
         else if (checkBurn())
         {
-            loseUI.SetActive(true);
-            clock.stopClock(true);
+            lose();
         }
-       
 
-
-
+    }
+    private void win()
+    {
+        winUI.SetActive(true);
+        grade.text = calGrade();
+        clock.stopClock(true);
+        if (!isPlay)
+        {
+            AudioManager.instance.musicSource.Stop();
+            AudioManager.instance.PlaySFX("Win", false);
+            isPlay = true;
+        }
+    }
+    private void lose()
+    {
+        loseUI.SetActive(true);
+        clock.stopClock(true);
+        if (!isPlay)
+        {
+            AudioManager.instance.musicSource.Stop();
+            AudioManager.instance.PlaySFX("Lose", false);
+            isPlay = true;
+        }
     }
     private string calGrade()
     {
@@ -74,6 +93,17 @@ public class FryGameManager : MonoBehaviour
         for (int i = 0; i < chickenManager.Length; i++)
         {
             if( chickenManager[i].getIsburn() == false)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    private bool checkPlate()
+    {
+        for (int i = 0; i < chickenManager.Length; i++)
+        {
+            if (chickenManager[i].getIsPlate() == false)
             {
                 return false;
             }

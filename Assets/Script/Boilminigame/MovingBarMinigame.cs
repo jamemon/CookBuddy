@@ -27,6 +27,10 @@ public class MovingBarMinigame : MonoBehaviour
     {
         if (!clickHandler.isEnd)
         {
+            if(AudioManager.instance.sfxLoopSource.isPlaying == false)
+            {
+                AudioManager.instance.PlaySFXLoop("Boil");
+            }
             timer -= Time.deltaTime;
             if (timer < 0f)
             {
@@ -43,6 +47,13 @@ public class MovingBarMinigame : MonoBehaviour
 
             indicatorPosition = Mathf.SmoothDamp(indicatorPosition, indicatorDestination, ref indicatorVelocity, smoothMotion, maxSpeed);
             indicator.position = Vector3.Lerp(leftPivot.position, RightPivot.position, indicatorPosition);
+        }
+        else
+        {
+            if (AudioManager.instance.sfxLoopSource.isPlaying == true)
+            {
+                AudioManager.instance.sfxLoopSource.Stop();
+            }
         }
     }
 }

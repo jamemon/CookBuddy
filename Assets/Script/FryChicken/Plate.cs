@@ -15,6 +15,11 @@ public class Plate : MonoBehaviour
             if (manager.getIsCooked() && !manager.getIsPlate() && !manager.getIsburn())
             {
                 chicCount++;
+                AudioManager.instance.PlaySFX("Plate",true);
+                manager.setIsPlate(true);
+            }
+            else if(manager.getIsCooked() && !manager.getIsPlate() && manager.getIsburn())
+            {
                 manager.setIsPlate(true);
             }
         }

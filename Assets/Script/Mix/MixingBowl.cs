@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class MixingBowl : MonoBehaviour
     [SerializeField] private Clock clock;
     public TextMeshProUGUI Grade;
     public TextMeshProUGUI TimeLeft;
+    private bool isPlay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,7 @@ public class MixingBowl : MonoBehaviour
     {
         if(clock.getTimer() <= 0)
         {
-            Debug.Log("1");
-            Endgame();
+            lose();
         }
     }
     public void Endgame()
@@ -41,18 +42,27 @@ public class MixingBowl : MonoBehaviour
         loseUi.SetActive(true);
         clock.stopClock(true);
     }
+    public void chooseSound(string name)
+    {
+        if(name == "Salt" || name == "Mix")
+        {
+            AudioManager.instance.PlaySFX("Spice",true);
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("Water", true);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
         if(other.gameObject.name == list[count])
         {
+            chooseSound(list[count]);
             count++;
             if(count == list.Count)
             {
-                winUi.SetActive(true);
-                clock.stopClock(true);
-                Grade.text = calGrade();
-                TimeLeft.text = clock.getTimer().ToString();
+                win();
             }
             if (count < 5)
             {
@@ -62,24 +72,49 @@ public class MixingBowl : MonoBehaviour
         }
         else
         {
-            Endgame();
+            lose();
         }
 
-        string calGrade()
+       
+    }
+    string calGrade()
+    {
+        if (clock.getTimer() >= 20f)
         {
-            if (clock.getTimer() >= 20f)
-            {
-                return "A";
-            }
-            else if (clock.getTimer() < 20 && clock.getTimer() > 10)
-            {
-                return "B";
-            }
-            else if (clock.getTimer() < 10 && clock.getTimer() > 0)
-            {
-                return "C";
-            }
-            return "F";
+            return "A";
+        }
+        else if (clock.getTimer() < 20 && clock.getTimer() > 10)
+        {
+            return "B";
+        }
+        else if (clock.getTimer() < 10 && clock.getTimer() > 0)
+        {
+            return "C";
+        }
+        return "F";
+    }
+    private void win()
+    {
+        winUi.SetActive(true);
+        Grade.text = calGrade();
+        clock.stopClock(true);
+        TimeLeft.text = clock.getTimer().ToString();
+        if (!isPlay)
+        {
+            AudioManager.instance.musicSource.Stop();
+            AudioManager.instance.PlaySFX("Win", false);
+            isPlay = true;
+        }
+    }
+    private void lose()
+    {
+        loseUi.SetActive(true);
+        clock.stopClock(true);
+        if (!isPlay)
+        {
+            AudioManager.instance.musicSource.Stop();
+            AudioManager.instance.PlaySFX("Lose", false);
+            isPlay = true;
         }
     }
 }

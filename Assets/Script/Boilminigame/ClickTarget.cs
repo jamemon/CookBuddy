@@ -23,6 +23,9 @@ public class ClickTarget : MonoBehaviour
     public TextMeshProUGUI TimeLeft;
 
     public bool isEnd = false;
+
+
+    private bool isPlay = false;
     private void FixedUpdate()
     {
         checkWinCon();
@@ -32,7 +35,7 @@ public class ClickTarget : MonoBehaviour
     {
         if (_IsinBound && !clock.getGameEnd())
         {
-            
+            AudioManager.instance.PlaySFX("Correct",true);
             if (_ClickCount < 3)
             {
                 _clickCorrect[_ClickCount].color = Color.green;
@@ -90,12 +93,25 @@ public class ClickTarget : MonoBehaviour
             WinUI.SetActive(true);
             Grade.text = calGrade();
             TimeLeft.text = clock.getTimer().ToString();
+            
+            if (!isPlay)
+            {
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Win",false);
+                isPlay = true;
+            }
 
         }
         else if(clock.getTimer() <= 0)
         {
             LoseUI.SetActive(true);
             clock.stopClock(true);
+            if (!isPlay)
+            {
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Lose",false);
+                isPlay = true;
+            }
         }
         isEnd = clock.getGameEnd();
     }

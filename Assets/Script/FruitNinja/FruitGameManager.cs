@@ -15,6 +15,8 @@ public class FruitGameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI chickText;
     [SerializeField] private TextMeshProUGUI chickCountText;
     [SerializeField] private GameObject spawner;
+
+    private bool isPlay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,12 @@ public class FruitGameManager : MonoBehaviour
             clock.stopClock(true);
             bound.SetActive(false);
             LoseUi.SetActive(true);
+            if (!isPlay)
+            {
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Lose", false);
+                isPlay = true;
+            }
         }
         if (clock.getTimer() <= 0) 
         {
@@ -45,16 +53,24 @@ public class FruitGameManager : MonoBehaviour
             WinUi.SetActive(true);
             grade.text = calGrade();
             chickText.text = chickenCount.ToString();
+            if (!isPlay)
+            {
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Win", false);
+                isPlay = true;
+            }
         }
     }
     public void AddChickenCount()
     {
         chickenCount++;
+        AudioManager.instance.PlaySFX("Cut", true);
         chickCountText.text = chickenCount.ToString();
     }
     public void AddChickenDropCount()
     {
         chickenDropCount++;
+        AudioManager.instance.PlaySFX("Drop",true);
     }
 
     private string calGrade()

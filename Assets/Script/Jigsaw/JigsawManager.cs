@@ -28,6 +28,8 @@ public class JigsawManager : MonoBehaviour
 
     private int piecesCorrect = 0;
 
+    private bool isPlay = false;
+
     private void Start()
     {
         StartGame(texture);
@@ -171,7 +173,7 @@ public class JigsawManager : MonoBehaviour
             draggingPiece.localPosition = targetPosition;
 
             draggingPiece.GetComponent<BoxCollider2D>().enabled = false;
-
+            AudioManager.instance.PlaySFX("Snap", true);
             piecesCorrect++;
             if (piecesCorrect == pieces.Count) 
             {
@@ -179,6 +181,12 @@ public class JigsawManager : MonoBehaviour
                 clock.stopClock(true);
                 grade.text = calGrade();
                 timeLeft.text = clock.getTimer().ToString();
+                if (!isPlay)
+                {
+                    AudioManager.instance.musicSource.Stop();
+                    AudioManager.instance.PlaySFX("Win", false);
+                    isPlay = true;
+                }
             }
 
         }
@@ -215,6 +223,12 @@ public class JigsawManager : MonoBehaviour
         {
             LoseUI.SetActive(true);
             clock.stopClock(true);
+            if (!isPlay)
+            {
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Lose", false);
+                isPlay = true;
+            }
         }
         if (Input.GetMouseButtonDown(0) && !clock.getGameEnd())  
         {

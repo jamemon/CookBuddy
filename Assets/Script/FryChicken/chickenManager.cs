@@ -87,6 +87,7 @@ public class chickenManager : MonoBehaviour
             else
             {
                 isBurn = true;
+                AudioManager.instance.PlaySFX("Burn",true);
                 timer = 0;
                 canvas.SetActive(false);
             }
@@ -134,4 +135,5 @@ public class chickenManager : MonoBehaviour
     {
         return isBurn;
     }
+   
 }
