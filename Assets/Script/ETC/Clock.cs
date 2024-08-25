@@ -63,7 +63,7 @@ public class Clock : MonoBehaviour
     }
     public float getTimer()
     {
-     return _timer; 
+        return Mathf.Round(_timer * 100f) / 100f; ; 
     }
     
 

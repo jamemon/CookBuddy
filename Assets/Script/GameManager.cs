@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlaySFX("Click", true);
         StartCoroutine(HomeSceneEnum());
     }
+    public void SceneName(string n)
+    {
+        AudioManager.instance.PlaySFX("Click", true);
+        StartCoroutine(SceneNameEnum(n));
+    }
     public void restart()
     {
         AudioManager.instance.PlaySFX("Click", true);
@@ -40,6 +45,10 @@ public class GameManager : MonoBehaviour
             optionUI.SetActive(false);
         }
     }
+    public void openLink(string n)
+    {
+        Application.OpenURL(n);
+    }
     IEnumerator nextSceneEnum()
     {
         animator.SetBool("IsEnd", true);
@@ -51,6 +60,12 @@ public class GameManager : MonoBehaviour
         animator.SetBool("IsEnd", true);
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("MainMenu");
+    }
+    IEnumerator SceneNameEnum(string name)
+    {
+        animator.SetBool("IsEnd", true);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(name);
     }
     IEnumerator RestartSceneEnum()
     {

@@ -59,6 +59,13 @@ public class AudioManager : MonoBehaviour
             {
                 sfxSource.pitch = (UnityEngine.Random.Range(0.9f, 1.1f));
             }
+            else
+            {
+                if(sfxSource.pitch != 1.0f)
+                {
+                    sfxSource.pitch = 1.0f;
+                }
+            }
             sfxSource.PlayOneShot(s.sound);
         }
     }
