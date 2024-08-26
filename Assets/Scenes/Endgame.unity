@@ -806,7 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd0a3423dac02d54faf20ddff04c5bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0.529
+  value: 1
 --- !u!4 &908709328
 Transform:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.019563723, y: 0.047396284}
   m_AnchorMax: {x: 0.95213586, y: 0.9620001}
-  m_AnchoredPosition: {x: 9.510071, y: -0.6354065}
+  m_AnchoredPosition: {x: 9.510071, y: -0.635437}
   m_SizeDelta: {x: 16.005798, y: -4.6472473}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945000502
@@ -1884,7 +1884,7 @@ MonoBehaviour:
   - clipName: Click
     sound: {fileID: 8300000, guid: d98531245aa305d489d275b4c45bd7d3, type: 3}
   - clipName: End
-    sound: {fileID: 8300000, guid: bda763d25ab6a924bbd3efaae6ea42da, type: 3}
+    sound: {fileID: 8300000, guid: 05a50d23717dd9848a0915e044a15f89, type: 3}
   musicSource: {fileID: 697507262}
   sfxSource: {fileID: 2098762859}
   sfxLoopSource: {fileID: 1386855695}
